@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using WORK.Components;
 using WORK.Models;
 using WORK.Services;
-
+using WORK.Utilities;
 
 namespace WORK
 {
@@ -21,6 +21,8 @@ namespace WORK
                 new MySqlServerVersion(new Version(8, 0, 29))));
 
             builder.Services.AddScoped<CustomerService>();
+            builder.Services.AddScoped<UserSession>();
+            builder.Services.AddSingleton<UserSession>();
 
 
             var app = builder.Build();

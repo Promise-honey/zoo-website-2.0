@@ -1,4 +1,4 @@
-﻿@page "/login"
+﻿@page "/log_in"
 @using WORK.Models
 @using WORK.Services
 @inject CustomerService CustomerService
@@ -32,7 +32,7 @@
 
     private async Task HandleValidSubmit()
     {
-        newCustomer.Password = await PasswordUtils.HashPassword(password);
+        // newCustomer.Password = await PasswordUtils.HashPassword(password);
         newCustomer = await CustomerService.LogIn(newCustomer);
         if (newCustomer == null)
         {
@@ -40,6 +40,7 @@
         }
         else
         {
+            UserSession.UserId = newCustomer.CustomerId;
             NavigationManager.NavigateTo("/account");
         }
     }
